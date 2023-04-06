@@ -1,0 +1,20 @@
+1. ສ້າງຕາຕະລາງ ic_brand
+    CREATE TABLE IF NOT EXISTS public.ic_brand
+    (
+        ignore_sync integer DEFAULT 0,
+        is_lock_record integer DEFAULT 0,
+        roworder serial NOT NULL,
+        code character varying(25) COLLATE pg_catalog."default" NOT NULL DEFAULT ''::character varying,
+        name_1 character varying(100) COLLATE pg_catalog."default" DEFAULT ''::character varying,
+        name_2 character varying(100) COLLATE pg_catalog."default" DEFAULT ''::character varying,
+        status smallint DEFAULT 0,
+        guid_code character varying(35) COLLATE pg_catalog."default" DEFAULT ''::character varying,
+        create_date_time_now timestamp without time zone NOT NULL DEFAULT ('now'::text)::timestamp without time zone,
+        PRIMARY KEY (code)
+    )
+    WITH (
+        OIDS = FALSE
+    )
+    TABLESPACE pg_default;
+
+2. ສ້າງຕາຕະລາງ Colors

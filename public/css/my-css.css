@@ -1,0 +1,240 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@500&display=swap");
+li.model-item:hover {
+    background-color: #505058;
+}
+@media only screen and (max-width: 800px) {
+    table {
+        font-size: 9px;
+    }
+    table .form-control:disabled,
+    table .form-control[readonly],
+    table .form-control {
+        padding: 0px;
+        font-size: 9px;
+    }
+    .table td,
+    .table th {
+        padding: 0px;
+    }
+}
+.lao-font {
+    font-family: "Noto Sans Lao", sans-serif;
+}
+
+.seller-track-info {
+    border: 1px solid;
+    border-radius: 5px;
+}
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: white;
+}
+/* The container */
+label.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* laravel pagination */
+ul.pagination {
+    display: inline-block;
+}
+
+ul.pagination li {
+    display: inline;
+}
+
+.my-active span {
+    border-radius: 7px;
+}
+ul.pagination li a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+.my-active span {
+    background-color: #5cb85c !important;
+    color: white !important;
+    border-color: #5cb85c !important;
+}
+/* laravel pagination */
+
+/* .................................................Create a custom checkbox.................................................... */
+/* The container */
+.ch-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.ch-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.ch-checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.ch-container:hover input ~ .ch-checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.ch-container input:checked ~ .ch-checkmark {
+    background-color: #2196f3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.ch-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.ch-container input:checked ~ .ch-checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.ch-container .ch-checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+/* ///////////////////////////////////////////////// Create Customer Radiobutton /////////////////////////////////////////////////////// */
+
+/* The container */
+.rd-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.rd-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.rd-checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.rd-container:hover input ~ .rd-checkmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.rd-container input:checked ~ .rd-checkmark {
+    background-color: #2196f3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.rd-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.rd-container input:checked ~ .rd-checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.rd-container .rd-checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+/* ///////////////////////////////////////////////// End Create Customer Radiobutton /////////////////////////////////////////////////////// */
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
