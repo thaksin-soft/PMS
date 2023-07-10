@@ -66,7 +66,7 @@ return [
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '192.168.0.129'),
+            'host' => env('DB_HOST', '10.0.40.135'),
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'pp_od_manage'),
             'username' => env('DB_USERNAME', 'postgres'),
@@ -80,7 +80,7 @@ return [
 
         'pgsql_pp' => [
             'driver' => env('DB_CONNECTION_PP'),
-            'host' => env('DB_HOST_PP', '192.168.0.129'),
+            'host' => env('DB_HOST_PP', '10.0.40.135'),
             'port' => env('DB_PORT_PP', '5432'),
             'database' => env('DB_DATABASE_PP', 'pp2022'),
             'username' => env('DB_USERNAME_PP', 'postgres'),
@@ -94,7 +94,7 @@ return [
 
         'pgsql_od' => [
             'driver' => env('DB_CONNECTION_OD'),
-            'host' => env('DB_HOST_OD', '192.168.0.129'),
+            'host' => env('DB_HOST_OD', '10.0.40.135'),
             'port' => env('DB_PORT_OD', '5432'),
             'database' => env('DB_DATABASE_OD', 'odm2022'),
             'username' => env('DB_USERNAME_OD', 'postgres'),
@@ -107,7 +107,7 @@ return [
         ],
         'pgsql_odmall' => [
             'driver' => env('DB_CONNECTION_ODMALL'),
-            'host' => env('DB_HOST_ODMALL', '192.168.0.129'),
+            'host' => env('DB_HOST_ODMALL', '10.0.40.135'),
             'port' => env('DB_PORT_ODMALL', '5432'),
             'database' => env('DB_DATABASE_ODMALL', 'odienmall'),
             'username' => env('DB_USERNAME_ODMALL', 'postgres'),

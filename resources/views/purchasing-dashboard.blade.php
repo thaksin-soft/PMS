@@ -174,6 +174,17 @@
                             </div>
                             <hr>
                             <div class="row">
+                            <div class="col-sm-4">
+                                    <label for="ic_branch_code" class="text-warning"><span class="text-danger"
+                                            style="font-size: 18px">*</span> ສັ່ງຈາກສາຂາ: </label>
+                                            <select name="ic_branch_code" id="ic_branch_code" class="form-control" required>
+                                        <option value="00">ສຳນັກງານໃຫຍ່</option>
+                                        <option value="05">ໂອດ້ຽນໄທ</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="row">
 
 
                                 <div class="col-sm-4">
@@ -710,8 +721,8 @@
                                         aria-hidden="true"></i>
                                     ເພີ່ມລາຍການສິນຄ້າ</button>
                                     &nbsp &nbsp
-                                <button class="btn btn-success btn-sm" onclick="confirm_for_check_product(${ item.doc_no })"><i class="fa fa-paper-plane" aria-hidden="true"></i>
-                                    ສົ່ງໃຫ້ຫົວໜ້າຈັດຊື້ກວດສອບ</button>
+                                <button class="btn btn-danger btn-sm" onclick="confirm_for_check_product(${ item.doc_no })"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                    ສົ່ງໃຫ້ບັນຊີ</button>
 
                             </h6>
                             <table class="table">

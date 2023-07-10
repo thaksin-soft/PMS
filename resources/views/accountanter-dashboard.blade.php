@@ -141,12 +141,12 @@
                                 ເພີ່ມໂດຍ:
                                 <span class="text-primary">${ item.emp_name } [${ item.code_fb }]</span>
 
-                                <button class="btn btn-success btn-sm" onclick="confirm_join_success(${ item.doc_no })"><i class="fa fa-floppy-o" aria-hidden="true"></i>
-                                    ຜຸກສຳເລັດ</button>
+                                <button class="btn btn-danger btn-sm" onclick="confirm_join_success(${ item.doc_no })"><i class="fa fa-floppy-o" aria-hidden="true"></i>
+                                    ຜຸກບັນຊີສຳເລັດ</button>
                                     &nbsp &nbsp
                                 <button class="btn btn-danger btn-sm" onclick="send_back_to_edit(${ item.doc_no })"><i class="fa fa-reply-all" aria-hidden="true"></i>
                                     ສົ່ງກັບໄປແກ້ໄຂ</button>
-                                
+
                             </h6>
                             <table class="table">
                                 <tr>

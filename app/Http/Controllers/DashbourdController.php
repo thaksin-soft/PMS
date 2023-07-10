@@ -6,15 +6,15 @@ use App\Models\PurchasingInventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
- 
+
 class DashbourdController extends Controller
 {
     public function index(Request $request){
-        
+
         if (Auth::user()->hasRole('superadministrator')) {
             return view('admin-dashboard');
         } else if (Auth::user()->hasRole('purchaser')){
-            
+
             if ($request->session()->has('choose-base') && $request->session()->get('choose-base') == 'pp') {
                 $ic_unit = DB::connection('pgsql_pp')->select('SELECT * FROM ic_unit');
                 $ic_group = DB::connection('pgsql_pp')->select('SELECT * FROM ic_group');
@@ -41,7 +41,10 @@ class DashbourdController extends Controller
                 $ic_category = DB::connection('pgsql_od')->select('SELECT * FROM ic_category');
                 $ic_warehouse = DB::connection('pgsql_od')->select('SELECT * FROM ic_warehouse');
             }
-            return view('purchasinghead-dashboard', compact('ic_unit', 'ic_group', 'ic_category', 'ic_warehouse'));
+
+            return view('admin-dashboard');
+            
+            //return view('purchasinghead-dashboard', compact('ic_unit', 'ic_group', 'ic_category', 'ic_warehouse'));
         } else if (Auth::user()->hasRole('accountanter')){
             return view('accountanter-dashboard');
 

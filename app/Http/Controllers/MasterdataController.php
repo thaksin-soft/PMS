@@ -34,14 +34,17 @@ class MasterdataController extends Controller
                     { $output = '';
                     $query = $request->get('query');
                     if($query != '')
-                            {
-                            
-                            $data_sql = DB::connection('pgsql_pp')->select("select code,name_1,unit_standard,item_brand,CASE WHEN code in(select code from dblink('host=192.168.0.129 port=5432 user=postgres password=sml dbname=odm2022','select code from ic_inventory') t1 (code text)) THEN '1' ELSE '0' END as check_code FROM ic_inventory where manufacturer_code !='pp'
+                        {
+
+                            $data_sql = DB::connection('pgsql_pp')->select("select code,name_1,unit_standard,item_brand,CASE WHEN code in(select code from dblink('host=10.0.40.114 port=5432 user=postgres password=sml dbname=odm2022','select code from ic_inventory') t1 (code text)) THEN '1' ELSE '0' END as check_code FROM ic_inventory where manufacturer_code !='pp'
                             and code like '%$query%' or name_1 like '%$query%' or item_brand like '%$query%' ");
 
-                    echo json_encode($data_sql);
-                    }
+                        echo json_encode($data_sql);
+
+                        }
+
             }
+
         }else{
 
             if($request->ajax())
@@ -50,10 +53,11 @@ class MasterdataController extends Controller
             if($query != '')
                     {
                     
-                    $data_sql = DB::connection('pgsql_od')->select("select code,name_1,unit_standard,item_brand,CASE WHEN code in(select code from dblink('host=192.168.0.129 port=5432 user=postgres password=sml dbname=pp2022','select code from ic_inventory') t1 (code text)) THEN '1' ELSE '0' END as check_code FROM ic_inventory where manufacturer_code !='odien'
+                    $data_sql = DB::connection('pgsql_od')->select("select code,name_1,unit_standard,item_brand,CASE WHEN code in(select code from dblink('host=10.0.40.114 port=5432 user=postgres password=sml dbname=pp2022','select code from ic_inventory') t1 (code text)) THEN '1' ELSE '0' END as check_code FROM ic_inventory where manufacturer_code !='odien'
                     and code like '%$query%' or name_1 like '%$query%' or item_brand like '%$query%' ");
 
             echo json_encode($data_sql);
+
             }
             
         }
@@ -74,7 +78,7 @@ class MasterdataController extends Controller
         barcode_checker_print,print_order_per_unit,production_period,is_new_item,no_discount,group_sub2,name_from_remark,create_code,manufacturer_code,create_date_time_now)   
            
         SELECT 0,0,code,name_1,name_2,0,item_category,group_main,item_brand,item_pattern,item_design,item_size,0,0,0,0,0,0,unit_standard,unit_standard,0,0,unit_standard,1,1,account_code_1,account_code_2,account_code_3,account_code_4,1,1,group_sub,  
-        0,0,0,0,0,0,0,group_sub2,0,'sin','pp',current_date::date FROM dblink('host=192.168.0.129 port=5432 user=postgres password=sml dbname=pp2022',  
+        0,0,0,0,0,0,0,group_sub2,0,'sin','pp',current_date::date FROM dblink('host=10.0.40.114 port=5432 user=postgres password=sml dbname=pp2022',  
                              'SELECT code,name_1,name_2,item_category,group_main,item_brand,item_pattern,item_design,item_size,unit_standard,account_code_1,account_code_2,account_code_3,account_code_4,group_sub,group_sub2 FROM ic_inventory') AS t1 
                              (code text,name_1 text,name_2 text, item_category text,group_main text,item_brand text,item_pattern text,item_design text,item_size text,unit_standard text,account_code_1 text,account_code_2 text,account_code_3 text,account_code_4 text,group_sub text,group_sub2 text) 
         where code ='$item_code'");
@@ -86,7 +90,7 @@ class MasterdataController extends Controller
                   
                   
                 SELECT 0,0,ic_code,0,0,start_purchase_wh,start_purchase_shelf,start_purchase_unit,start_sale_wh,   
-                start_sale_shelf,start_sale_unit,0,0,0,0,0,0,0,0,0,0,0,0 FROM dblink('host = 192.168.0.129 port=5432 user=postgres password=sml dbname=pp2022',  
+                start_sale_shelf,start_sale_unit,0,0,0,0,0,0,0,0,0,0,0,0 FROM dblink('host = 10.0.40.114 port=5432 user=postgres password=sml dbname=pp2022',  
                                           'SELECT ic_code,start_purchase_wh,start_purchase_shelf,start_purchase_unit,start_sale_wh,   
                 start_sale_shelf,start_sale_unit FROM ic_inventory_detail') AS t3(ic_code text,start_purchase_wh text,start_purchase_shelf text,start_purchase_unit text,start_sale_wh text,   
                 start_sale_shelf text,start_sale_unit text) 
@@ -96,7 +100,7 @@ class MasterdataController extends Controller
                 if($inventory_detail)
                 {
                     $unit_use = DB::connection('pgsql_od')->INSERT("INSERT INTO ic_unit_use(code,line_number,stand_value,divide_value,ratio,row_order,ic_code,status,unit_size)
-                    SELECT code,line_number,stand_value,divide_value,ratio,row_order,ic_code,status,unit_size FROM dblink('host=192.168.0.129 port=5432 user=postgres password=sml dbname=pp2022',  
+                    SELECT code,line_number,stand_value,divide_value,ratio,row_order,ic_code,status,unit_size FROM dblink('host=10.0.40.114 port=5432 user=postgres password=sml dbname=pp2022',  
                                               'SELECT code,line_number,stand_value,divide_value,ratio,row_order,ic_code,status,unit_size FROM ic_unit_use') AS t3 
                                               (code text,line_number numeric,stand_value numeric,divide_value numeric,ratio numeric,row_order integer,ic_code text,status smallint,unit_size numeric) 
                     where ic_code = '$item_code'");
@@ -122,7 +126,7 @@ class MasterdataController extends Controller
                 barcode_checker_print,print_order_per_unit,production_period,is_new_item,no_discount,group_sub2,name_from_remark,create_code,manufacturer_code,create_date_time_now)   
                 
                 SELECT 0,0,code,name_1,name_2,0,item_category,group_main,item_brand,item_pattern,item_design,item_size,0,0,0,0,0,0,unit_standard,unit_standard,0,0,unit_standard,1,1,account_code_1,account_code_2,account_code_3,account_code_4,1,1,group_sub,  
-                0,0,0,0,0,0,0,group_sub2,0,'sin','pp',current_date::date FROM dblink('host = 192.168.0.129 port = 5432 user = postgres password = sml dbname= odm2022',  
+                0,0,0,0,0,0,0,group_sub2,0,'sin','pp',current_date::date FROM dblink('host = 10.0.40.114 port = 5432 user = postgres password = sml dbname= odm2022',  
                                     'SELECT code,name_1,name_2,item_category,group_main,item_brand,item_pattern,item_design,item_size,unit_standard,account_code_1,account_code_2,account_code_3,account_code_4,group_sub,group_sub2 FROM ic_inventory') AS t1 
                                     (code text,name_1 text,name_2 text, item_category text,group_main text,item_brand text,item_pattern text,item_design text,item_size text,unit_standard text,account_code_1 text,account_code_2 text,account_code_3 text,account_code_4 text,group_sub text,group_sub2 text) 
                 where code ='$item_code'");
@@ -134,7 +138,7 @@ class MasterdataController extends Controller
                             
                             
                             SELECT 0,0,ic_code,0,0,start_purchase_wh,start_purchase_shelf,start_purchase_unit,start_sale_wh,   
-                            start_sale_shelf,start_sale_unit,0,0,0,0,0,0,0,0,0,0,0,0 FROM dblink('host = 192.168.0.129 port = 5432 user = postgres password = sml dbname= odm2022',  
+                            start_sale_shelf,start_sale_unit,0,0,0,0,0,0,0,0,0,0,0,0 FROM dblink('host = 10.0.40.114 port = 5432 user = postgres password = sml dbname= odm2022',  
                                                     'SELECT ic_code,start_purchase_wh,start_purchase_shelf,start_purchase_unit,start_sale_wh,   
                             start_sale_shelf,start_sale_unit FROM ic_inventory_detail') AS t3(ic_code text,start_purchase_wh text,start_purchase_shelf text,start_purchase_unit text,start_sale_wh text,   
                             start_sale_shelf text,start_sale_unit text) 
@@ -144,7 +148,7 @@ class MasterdataController extends Controller
                                 if($inventory_detail)
                                 {
                                     $unit_use = DB::connection('pgsql_pp')->INSERT("INSERT INTO ic_unit_use(code,line_number,stand_value,divide_value,ratio,row_order,ic_code,status,unit_size)
-                                    SELECT code,line_number,stand_value,divide_value,ratio,row_order,ic_code,status,unit_size FROM dblink('host = 192.168.0.129 port = 5432 user = postgres password = sml dbname= odm2022',  
+                                    SELECT code,line_number,stand_value,divide_value,ratio,row_order,ic_code,status,unit_size FROM dblink('host = 10.0.40.114 port = 5432 user = postgres password = sml dbname= odm2022',  
                                                             'SELECT code,line_number,stand_value,divide_value,ratio,row_order,ic_code,status,unit_size FROM ic_unit_use') AS t3 
                                                             (code text,line_number numeric,stand_value numeric,divide_value numeric,ratio numeric,row_order integer,ic_code text,status smallint,unit_size numeric) 
                                     where ic_code = '$item_code'");

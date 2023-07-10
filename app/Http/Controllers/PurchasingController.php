@@ -87,17 +87,25 @@ class PurchasingController extends Controller
     public function create_code(Request $request)
     {
         $base = $request->session()->get('choose-base');
+
+        // $load_id = DB::select("SELECT right(max(code), 4) as maxid FROM ic_inventory WHERE left (code, 5) = ?", [$code_sub2]);
+        // $load_last_id = $load_id[0]->maxid;
+        // if ($load_last_id == '') {
+        //     if ($base == 'pp') {
+        //         $load_id = DB::connection('pgsql_pp')->select('SELECT right(max(code), 4) as maxid FROM ic_inventory WHERE left (code, 5) = ?', [$code_sub2]);
+        //     } else {
+        //         $load_id = DB::connection('pgsql_od')->select('SELECT right(max(code), 4) as maxid FROM ic_inventory WHERE left (code, 5) = ?', [$code_sub2]);
+        //     }
+        //     $load_last_id = $load_id[0]->maxid;
+        //}
         $code_sub2 = $request->sub2;
-        $load_id = DB::select("SELECT right(max(code), 4) as maxid FROM ic_inventory WHERE left (code, 5) = ?", [$code_sub2]);
+
+
+        $load_id = DB::select("SELECT right(max(code), 4) as maxid FROM max_ic_code WHERE left (code, 5) ='$code_sub2'");
+
         $load_last_id = $load_id[0]->maxid;
-        if ($load_last_id == '') {
-            if ($base == 'pp') {
-                $load_id = DB::connection('pgsql_pp')->select('SELECT right(max(code), 4) as maxid FROM ic_inventory WHERE left (code, 5) = ?', [$code_sub2]);
-            } else {
-                $load_id = DB::connection('pgsql_od')->select('SELECT right(max(code), 4) as maxid FROM ic_inventory WHERE left (code, 5) = ?', [$code_sub2]);
-            }
-            $load_last_id = $load_id[0]->maxid;
-        }
+
+
         $max_id = $load_last_id + 1;
         if ($max_id < 10) {
             $code = '000' . $max_id;
@@ -125,31 +133,63 @@ class PurchasingController extends Controller
        // if (count($ch) > 0) {
        //     return 'exit';
       //  }
-		
-		 //generate inventory code
-        $base = $request->session()->get('choose-base');
-        $ch = DB::select("SELECT a.name_1 FROM ic_inventory a
-        INNER JOIN ic_purchasing_inventory b ON a.doc_no = b.doc_no
-        where a.name_1 = '$request->name_1' and b.base='$base'");
-		 if (count($ch) > 0) {
-          return 'exit';
-       }
-		
-        //generate inventory code
-        $base = $request->session()->get('choose-base');
-        $code_sub2 = $request->group_sub2;
-        $load_id = DB::select("SELECT right(max(t1.code), 4) as maxid
-        FROM ic_inventory t1, ic_purchasing_inventory t2
-        WHERE left (t1.code, 5) = ? AND t1.doc_no = t2.doc_no AND t2.base = ?", [$code_sub2, $base]);
+
+	// 	 //generate inventory code
+    //     $base = $request->session()->get('choose-base');
+    //     $ch = DB::select("SELECT a.name_1 FROM ic_inventory a
+    //     INNER JOIN ic_purchasing_inventory b ON a.doc_no = b.doc_no
+    //     where a.name_1 = '$request->name_1' and b.base='$base'");
+	// 	 if (count($ch) > 0) {
+    //       return 'exit';
+    //    }
+
+    //     //generate inventory code
+    //
+    //     $code_sub2 = $request->group_sub2;
+    //     $load_id = DB::select("SELECT right(max(t1.code), 4) as maxid
+    //     FROM ic_inventory t1, ic_purchasing_inventory t2
+    //     WHERE left (t1.code, 5) = ? AND t1.doc_no = t2.doc_no", [$code_sub2]);
+    //     $load_last_id = $load_id[0]->maxid;
+
+//     $code_sub2 = $request->group_sub2;
+//     $base = $request->session()->get('choose-base');
+
+//             if ($base == 'pp') {
+//                 $load_id = DB::connection('pgsql_pp')->select('SELECT right(max(code), 4) as maxid FROM ic_inventory WHERE left (code, 5) = ?', [$code_sub2]);
+//             } else {
+//                 $load_id = DB::connection('pgsql_od')->select('SELECT right(max(code), 4) as maxid FROM ic_inventory WHERE left (code, 5) = ?', [$code_sub2]);
+//             }
+//             $load_last_id = $load_id[0]->maxid;
+
+// ///ດຶງລະຫັດຫຼ້າສຸດ //////////////////
+
+// $ip = Config::get('dbcon.ip_local');
+// $port = Config::get('dbcon.port');
+// $dbpp = Config::get('dbcon.ppdb');
+// $dbod = Config::get('dbcon.odiendb');
+
+// $load_id = "SELECT right(max(code), 4) as maxid FROM (
+//                 select code from dblink('host= ". $ip ." port= ". $port ." user=postgres password=sml dbname= ".dbpp."',
+//                                         'select code from ic_inventory') t1 (code text) where  left(t1.code, 5) = '$code_sub2'
+//                 UNION ALL
+//                 select code from dblink('host=10.0.40.135 port=5432 user=postgres password=sml dbname= ". obod ."',
+//                                         'select code from ic_inventory') t1 (code text) where  left(t1.code, 5) = '$code_sub2'
+//                 ) z";
+
+
+   $code_sub2 = $request->group_sub2;
+
+        $ip = Config::get('dbcon.ip_local');
+        $port = Config::get('dbcon.port');
+        $dbpp = Config::get('dbcon.ppdb');
+        $dbod = Config::get('dbcon.odiendb');
+
+        $load_id = DB::select("SELECT right(max(code), 4) as maxid FROM max_ic_code WHERE left (code, 5) ='$code_sub2'");
+
         $load_last_id = $load_id[0]->maxid;
-        if ($load_last_id == '') {
-            if ($base == 'pp') {
-                $load_id = DB::connection('pgsql_pp')->select('SELECT right(max(code), 4) as maxid FROM ic_inventory WHERE left (code, 5) = ?', [$code_sub2]);
-            } else {
-                $load_id = DB::connection('pgsql_od')->select('SELECT right(max(code), 4) as maxid FROM ic_inventory WHERE left (code, 5) = ?', [$code_sub2]);
-            }
-            $load_last_id = $load_id[0]->maxid;
-        }
+
+///////////////////////////////
+
         $max_id = $load_last_id + 1;
         if ($max_id < 10) {
             $code = '000' . $max_id;
@@ -221,6 +261,7 @@ class PurchasingController extends Controller
         $inventory->pi_no = $pi_no;
         $inventory->models = $request->product_models;
         $inventory->creater_id = auth()->user()->emp_id;
+        $inventory->ic_branch_code = $request->ic_branch_code;
         $inventory->save();
         if ($inventory) {
             ///ບັນທຶກ inventory Detail
@@ -538,7 +579,7 @@ class PurchasingController extends Controller
     {
         $doc_no = $request->doc_no;
         $ch_date = date('Y-m-d H:i:s');
-        $check_purchasing = DB::update("UPDATE public.ic_purchasing_inventory SET ch_date=?, ch_status=1, approver = ? WHERE doc_no=?", [$ch_date, auth()->user()->emp_id, $doc_no]);
+        $check_purchasing = DB::update("UPDATE public.ic_purchasing_inventory SET ch_date=?, ch_status=2, approver = ? WHERE doc_no=?", [$ch_date, auth()->user()->emp_id, $doc_no]);
         if ($check_purchasing) {
             return 'success';
         }

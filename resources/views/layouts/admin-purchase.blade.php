@@ -20,7 +20,7 @@
         <li class="model-item"><a href="{{ route('product-size') }}">ຂະໜາດສິນຄ້າ [ph7]</a></li>
         <li class="model-item"><a href="{{ route('product-design') }}">ອອກແບບ [ph8]</a></li>
         <li class="model-item"><a href="{{ route('group-warehouse') }}">ສາງ</a></li>
-        
+        <li class="model-item"><a href="{{ route('uploadpro-index') }}"> ອັບສິນຄ້າທີ່ມີແລ້ວ </a></li>
         {{-- <li class="model-item"><a href="{{ route('pro-type.index') }}">ປະເພດສິນຄ້າ</a></li> --}}
     </ul>
 </li>

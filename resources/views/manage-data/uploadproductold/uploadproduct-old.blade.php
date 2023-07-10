@@ -164,11 +164,11 @@ function product_save(item_code)
                     swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: '<span class="lao-font">ບັນທຶກສຳເລັດ</span>',
+                        title: '<span class="lao-font">ຄິດແລ້ວວ່າເຈົ້າຕ້ອງອ່ານ</span> <br> <span class="lao-font">ບັນທຶກສຳເລັດ</span>',
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    location.reload;
+                    $("#datalist").html('');
                 } else {
                     Swal.fire({
                         position: 'center',

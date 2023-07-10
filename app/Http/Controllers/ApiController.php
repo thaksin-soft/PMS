@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
-    private $od_url = "http://183.182.101.13:5000";
-    private $pp_url = "http://183.182.101.13:4000";
+    private $od_url = "10.0.40.135:5000";
+    private $pp_url = "10.0.40.135:4000";
 
     function load_data_from_api($url){
         // Initiate curl session in a variable (resource)
@@ -65,9 +65,9 @@ class ApiController extends Controller
             $ic_group_sub = $this->load_data_from_api($url);
             return $ic_group_sub;
         }
-        
+
     }
-    
+
     public function load_sub_group(Request $request)
     {
         $ch = $request->session()->get('choose-base');
@@ -80,6 +80,7 @@ class ApiController extends Controller
         $url = $set_url.'/load-ic-group-sub/'.$main_group;
         $ic_group_sub = $this->load_data_from_api($url);
         return $ic_group_sub;
+
     }
     public function load_sub_group2(Request $request)
     {
@@ -91,12 +92,12 @@ class ApiController extends Controller
         }
         $main_group = $request->main_group;
         $group_sub = $request->group_sub;
-        
+
         $url = $set_url.'/load-ic-group-sub2/'.$main_group.'/'.$group_sub;
         $ic_group_sub = $this->load_data_from_api($url);
         return $ic_group_sub;
     }
-    
+
     public function fetch_emp_fb_odien()
     {
         // Initiate curl session in a variable (resource)
@@ -117,7 +118,7 @@ class ApiController extends Controller
         return $response_data;
     }
 
-    
+
     public function fetch_emp_fb_pp()
     {
         // Initiate curl session in a variable (resource)
@@ -158,7 +159,7 @@ class ApiController extends Controller
         return $response_data;
     }
 
-    
+
     public function fetch_group_fb_pp()
     {
         // Initiate curl session in a variable (resource)
@@ -199,7 +200,7 @@ class ApiController extends Controller
         return $response_data;
     }
 
-    
+
     public function fetch_cate_fb_pp()
     {
         // Initiate curl session in a variable (resource)
@@ -238,8 +239,8 @@ class ApiController extends Controller
         $response_data = json_decode($curl_data);
         return $response_data;
     }
-    
-    
+
+
     public function fetch_brand_fb_pp()
     {
         // Initiate curl session in a variable (resource)
