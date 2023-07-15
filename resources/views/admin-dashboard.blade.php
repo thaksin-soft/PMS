@@ -45,6 +45,7 @@
                             <td>${ key + 1 }</td>
                             <td class="text-danger">[${ pro_item.code }]</td>
                             <td>${ pro_item.name_1 }</td>
+                            <td>${ pro_item.name_eng_1 }</td>
                             <td>${ pro_item.unit_standard }</td>
                             <td>${ pro_item.ph1 }</td>
                             <td>${ pro_item.ph2 }</td>
@@ -54,6 +55,8 @@
                             <td>${ pro_item.ph6 }</td>
                             <td>${ pro_item.ph7 }</td>
                             <td>${ pro_item.ph8 }</td>
+                            <td>${ pro_item.ic_branch_code }</td>
+
                             <td width="100">
                                 <a href="{{ url('show-inventory/${ pro_item.doc_no }/${ pro_item.code }') }}" type="button" class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
                             </td>
@@ -65,17 +68,18 @@
                                 <span class="text-primary">${ item.emp_name } [${ item.code_fb }]</span>
                                 <button class="btn btn-warning btn-sm" onclick="upload_data('${ item.doc_no }')"><i class="fa fa-paper-plane" aria-hidden="true"></i>
                                     upload ເຂົ້າລະບົບ</button>
-                                
+
                                     &nbsp &nbsp
                                 <button class="btn btn-danger btn-sm" onclick="send_back_to_edit('${ item.doc_no }')"><i class="fa fa-reply-all" aria-hidden="true"></i>
                                     ສົ່ງກັບໄປແກ້ໄຂ</button>
-                                
+
                             </h6>
                             <table class="table">
                                 <tr>
                                     <th width="50">ລຳດັບ</th>
                                     <th></th>
                                     <th>ຊື່ສິນຄ້າ</th>
+                                    <th>ຊື່ສິນຄ້າ(ໄທ)</th>
                                     <th>ຫົວໜ່ວຍຍອດຄົງເຫຼືອ</th>
                                     <th>ph1</th>
                                     <th>ph2</th>
@@ -85,6 +89,7 @@
                                     <th>ph6</th>
                                     <th>ph7</th>
                                     <th>ph8</th>
+                                    <th>ສັ່ງຊື້ຈາກສາຂາ</th>
                                 </tr>
                                 <tbody id="table-add-purchasing">${pro_detail}</tbody>
                     </table>`);

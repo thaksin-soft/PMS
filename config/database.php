@@ -66,8 +66,8 @@ return [
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '10.0.40.135'),
-            'port' => env('DB_PORT', '5432'),
+            'host' => env('DB_HOST', '202.137.144.138'),
+            'port' => env('DB_PORT', '5555'),
             'database' => env('DB_DATABASE', 'pp_od_manage'),
             'username' => env('DB_USERNAME', 'postgres'),
             'password' => env('DB_PASSWORD', 'sml'),
@@ -80,8 +80,8 @@ return [
 
         'pgsql_pp' => [
             'driver' => env('DB_CONNECTION_PP'),
-            'host' => env('DB_HOST_PP', '10.0.40.135'),
-            'port' => env('DB_PORT_PP', '5432'),
+            'host' => env('DB_HOST_PP', '202.137.144.138'),
+            'port' => env('DB_PORT_PP', '5555'),
             'database' => env('DB_DATABASE_PP', 'pp2022'),
             'username' => env('DB_USERNAME_PP', 'postgres'),
             'password' => env('DB_PASSWORD_PP', 'sml'),
@@ -94,8 +94,8 @@ return [
 
         'pgsql_od' => [
             'driver' => env('DB_CONNECTION_OD'),
-            'host' => env('DB_HOST_OD', '10.0.40.135'),
-            'port' => env('DB_PORT_OD', '5432'),
+            'host' => env('DB_HOST_OD', '202.137.144.138'),
+            'port' => env('DB_PORT_OD', '5555'),
             'database' => env('DB_DATABASE_OD', 'odm2022'),
             'username' => env('DB_USERNAME_OD', 'postgres'),
             'password' => env('DB_PASSWORD_OD', 'sml'),
@@ -107,8 +107,8 @@ return [
         ],
         'pgsql_odmall' => [
             'driver' => env('DB_CONNECTION_ODMALL'),
-            'host' => env('DB_HOST_ODMALL', '10.0.40.135'),
-            'port' => env('DB_PORT_ODMALL', '5432'),
+            'host' => env('DB_HOST_ODMALL', '202.137.144.138'),
+            'port' => env('DB_PORT_ODMALL', '5555'),
             'database' => env('DB_DATABASE_ODMALL', 'odienmall'),
             'username' => env('DB_USERNAME_ODMALL', 'postgres'),
             'password' => env('DB_PASSWORD_ODMALL', 'sml'),

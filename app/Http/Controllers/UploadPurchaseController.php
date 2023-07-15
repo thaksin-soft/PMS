@@ -28,7 +28,7 @@ class UploadPurchaseController extends Controller
             $product_data = array();
             $ip = Config::get('dbcon.ip_local');
             foreach ($purchasing as $key => $value) {
-                $product = DB::select("SELECT t1.doc_no, t1.code, t1.name_1, t1.unit_standard, t2.name_1 AS ph1, t3.name_1 AS ph2, t4.name_1 AS ph3, t5.name_1 AS ph4, t6.name_1 AS ph5 , t7.name_1 AS ph6, t8.name_1 AS ph7, t9.name_1 AS ph8 FROM ic_inventory AS t1,
+                $product = DB::select("SELECT t1.doc_no, t1.code, t1.name_1,t1.name_eng_1,t1.ic_branch_code,t1.unit_standard, t2.name_1 AS ph1, t3.name_1 AS ph2, t4.name_1 AS ph3, t5.name_1 AS ph4, t6.name_1 AS ph5 , t7.name_1 AS ph6, t8.name_1 AS ph7, t9.name_1 AS ph8 FROM ic_inventory AS t1,
                 (SELECT * FROM dblink('host = ". $ip ." user = postgres password = sml dbname= ". $db ."', 'SELECT code, name_1 FROM ic_group') AS t1(code text, name_1  text) ) AS t2,
                 (SELECT * FROM dblink('host = ". $ip ." user = postgres password = sml dbname= ". $db ."', 'SELECT code, name_1 FROM ic_group_sub') AS t1(code text, name_1  text) ) AS t3,
                 (SELECT * FROM dblink('host = ". $ip ." user = postgres password = sml dbname= ". $db ."', 'SELECT code, name_1 FROM ic_group_sub2') AS t1(code text, name_1  text) ) AS t4,
