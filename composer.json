@@ -14,6 +14,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "maatwebsite/excel": "^3.1",
+        "phattarachai/line-notify": "^2.0",
         "santigarcor/laratrust": "^6.3",
         "yajra/laravel-datatables-oracle": "^9.21"
     },

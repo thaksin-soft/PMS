@@ -6,6 +6,7 @@ use App\Models\PurchasingInventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
+use Phattarachai\LineNotify\Facade\Line;
 
 
 class UploadPurchaseController extends Controller
@@ -288,6 +289,7 @@ class UploadPurchaseController extends Controller
         $up_date = date('Y-m-d H:i:s');
         $check_purchasing = DB::update("UPDATE public.ic_purchasing_inventory SET up_date=?, ch_status=5, uploader = ? WHERE doc_no=?", [$up_date, auth()->user()->emp_id, $doc_no]);
         if ($check_purchasing) {
+            line::send('ອັບຂື້ນລະບົບໃຫ້ແລ້ວເດີ :'. $doc_no);
             return 'success';
         }
     }

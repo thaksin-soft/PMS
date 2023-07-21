@@ -10,6 +10,7 @@ use App\Models\InventoryDetail;
 use App\Models\InventoryUnit;
 use App\Models\PurchasingInventory;
 use Illuminate\Support\Facades\Config;
+use Phattarachai\LineNotify\Facade\Line;
 
 class PurchasingController extends Controller
 {
@@ -37,6 +38,9 @@ class PurchasingController extends Controller
         $purch_inv->uploader = null;
         $purch_inv->base = $base;
         $purch_inv->save();
+        if($purch_inv){
+            line::send('ສ້າງເອກະສານໃໝ່ :'.$doc_no);
+        }
         return redirect()->back();
     }
 
@@ -580,8 +584,12 @@ class PurchasingController extends Controller
         $doc_no = $request->doc_no;
         $ch_date = date('Y-m-d H:i:s');
         $check_purchasing = DB::update("UPDATE public.ic_purchasing_inventory SET ch_date=?, ch_status=2, approver = ? WHERE doc_no=?", [$ch_date, auth()->user()->emp_id, $doc_no]);
+        $item = DB::select("select count(code) from ic_inventory where doc_no='$doc_no'");
+
         if ($check_purchasing) {
+                line::send('@dot ສົ່ງຜູກເລກບັນຊີ :'. $doc_no);
             return 'success';
+
         }
     }
 }

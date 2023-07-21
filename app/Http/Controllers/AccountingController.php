@@ -6,6 +6,7 @@ use App\Models\PurchasingInventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Config;
+use Phattarachai\LineNotify\Facade\Line;
 
 class AccountingController extends Controller
 {
@@ -80,6 +81,7 @@ class AccountingController extends Controller
         $ch_date = date('Y-m-d H:i:s');
         $check_purchasing = DB::update("UPDATE public.ic_purchasing_inventory SET ch_date = ?, ch_status = 4 WHERE doc_no=?", [$ch_date, $doc_no]);
         if ($check_purchasing) {
+            line::send('@oranong ອັບຂື້ນລະບົບໃຫ້ແນ່ :'. $doc_no);
             return 'success';
         }
     }
